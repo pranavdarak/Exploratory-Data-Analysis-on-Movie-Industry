@@ -45,11 +45,8 @@ We will also create two columns called `Adjusted_Budget` and `Adjusted_Profit` w
 
 We examine the overall trend of budget versus profit to see if there's any correlation.
 
-![BudgetVProfit](visuals/BudgetVProfit.png)
 
 We also take a look at the top 25 movies in terms of profit to understand their financial success and how closely we should attempt to emulate their budget. We can see in the graph below there are a few outliers so the median will end up being more useful in determining our final budget.
-
-![ProfitBudgetTop25](visuals/ProfitBudgetTop25.png)
 
 **Question 1 Conclusion:** Our Company should budget \$82,250,000 for a movie and that budget should correlate with a profit margin of 80\%.
 
@@ -61,10 +58,6 @@ m_by_genre = genre_budgets_df.groupby('Genre', as_index=False)['Movie'].count().
 ```
 Using the same `groupby` method, we select the median net profit and profit margin for each genre. We use the median in this case as the mean is likely skewed by outliers. Outliers could either be movies with enormous profits or movies having negative profit.
 
-![NetProfitGenre.png](visuals/NetProfitGenre.png)
-
-![ProfitMarginGenre](visuals/ProfitMarginGenre.png)
-
 Lastly, we look at the percent of net profit by genre. This informs us as to how Our Company should allocate their movie budget to various films.
 
 **Question 2 Conclusion:** Animation, adventure, and sci-Fi have the highest net profit of all genres. Analysis of profit margin shows that in addition animation, adventure, and sci-fi, horrors and musicals also have financial success.
@@ -75,11 +68,7 @@ We start by converting the dates from the `imdb_budgets_df` dataframe to a datet
 
 When grouping by month, we can select the `Net Profit` and `Profit Margin` columns so that we can see which months have the most financial success.
 
-![MarginByMonth](visuals/MarginByMonth.png)
-
 Finally we plot the net profit by month for a small selection of genres.  We can see that there is a general trend amongst these genres for the profit in each month.
-
-![ProfitbyMonthbyGenre](visuals/ProfitbyMonthbyGenre.png)
 
 **Question 3 Conclusion:** We recommend that Our Company release the bulk of their movies, especially Animation, during the summer months (i.e. May-July). Adventure, Drama and Comedy movies would see similar success if released in November, but the recommendation remains to focus on summer.
 
@@ -102,11 +91,6 @@ actor_total['VAR'] = (actor_total['Net Profit']/actor_total['Net Profit'].mean()
 ```
 We follow the same process with directors, except we filter by using 5 or more movies instead of 10.
 
-![VARActor](visuals/VARActor.png)
-
-![VARDirector](visuals/VARDirector.png)
-
-
 **Question 4 Conclusion:** We recommend that Our Company focus their cast and crew search to individuals who consistently score at least 1.0 on the VAR score. We can, with a high level of confidence, conclude that these individuals will elevate the overall production.
 
 ## Question 5: How much money should you spend on a movie to win an Oscar?
@@ -114,11 +98,7 @@ We follow the same process with directors, except we filter by using 5 or more m
 In this analysis we will join the `imdb_budgets_df` and `awards_df` dataframes so that we explore correlations between budgets and Oscar wins. We first look at a distribution of the budget for movies that have been Oscar-nominated.  We also look at the win rates for the nominated movies so that we can establish the minimum number of nominations required to secure at least one win. For this analysis the minimum number or nominations 
 required was three.
 
-![Oscar_Nominated](visuals/Oscar_Nominated.png)
-
 We use three nominations as the cutoff to filter our data and then look at the distribution of budgets again. We use the median as our measure of central tendency due to a large standard deviation in the data.
-
-![3_Nominations](visuals/3_Nominations.png)
 
 **Question 5 Conclusion:** Our Company should spend at least $35,465,000 in order to make an Oscar-winning movie.
 
@@ -128,8 +108,6 @@ To answer this question we will only focus on the 4 ratings: G, PG, PG-13, and R
 
 It's also important to see the net profits of each rating by genre. We first do a `groupby` on rating and genre and then create a pivot table so that we can see the net profits of each rating in each genre.  This will guide us as to what ratings should be targeted based on the genre of the movie being made.
 
-![ProfitbyGenrebyRating](visuals/ProfitbyGenrebyRating.png)
-
 **Question 6 Conclusion:** We recommend that Microsoft take into consideration the rating of the movie based on the genre and target audience. If making animation movies, it is wise to stick to a G or PG rating, otherwise PG-13 is the sweetspot. In terms of runtime, there is little correlation in terms of overall profitability.
 
 ## Question 7: Sticking to our analysis of Net Profit and Profit Margin, what should Microsoft determine to be the baseline for sustainable success?
@@ -138,20 +116,13 @@ This analysis will require the use of the `studiobudgets_df dataframe`.  We firs
 We only select the top 25 studios as we are concerned with both being financial successful as well as being recognized as one of the major studios in the industry.
 
 
-![NetProfitStudio](visuals/NetProfitStudio.png)
-
 **Question 7 Conclusion:** Our Company should aim for a profit margin of 66% and a net profit of slightly over 50 million per movie to compete with the top existing studios.
 
 ## Question 8: Based on the success of current competitors, which should we look to for best practices?
 
 We take the `theaters_df` dataframe and a column called `dollars_per_theater` to see what the average domestic gross per theater is for a movie.  We then `groupby` by studio so that we can compare each studio.
 
-![DomesticPerTheater](visuals/DomesticPerTheater.png)
-
-
 We also investigate the correlation between the average maximum number of theaters and average domestic gross per studio.
-
-![TheatersVGross](visuals/TheatersVGross.png)
 
 We perform a join between the `theaters_df` and `awards_df` dataframes to further explore this question.
 ```
